@@ -1,4 +1,4 @@
-#sanitizes and writes the live arduino imu serial data read from the text file that CoolTerm writes to approximately every 10 seconds
+ #sanitizes and writes the live arduino imu serial data read from the text file that CoolTerm writes to approximately every 10 seconds
 import time
 import re
 import os
