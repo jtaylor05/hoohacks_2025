@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://kboxl2jvxs84"]
+
+[ext_resource type="Script" path="res://line_renderer.gd" id="1_r6e64"]
+
+[sub_resource type="Environment" id="Environment_5ddi1"]
+background_mode = 1
+background_color = Color(1, 1, 1, 0.278431)
+
+[node name="DrawController" type="Node3D"]
+script = ExtResource("1_r6e64")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5ddi1")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+current = true
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="UI/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Line Thickness"
+
+[node name="LineThicknessSlider" type="HSlider" parent="UI/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 0.01
+max_value = 1.0
+step = 0.01
+value = 0.2
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.465, 2.40952, 0.976055)
+visible = false
