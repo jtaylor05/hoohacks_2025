@@ -2,11 +2,10 @@ extends Node
 
 var points : Array = []
 
+@export var scale  : float = 1.0
+
 func to_vector(point) -> Vector3:
 	return Vector3(point[0], point[1], point[2])
-
-func _ready() -> void:
-	pass
 
 func _process(delta: float) -> void:
 	var input = ReadFileData.get_next_input()
