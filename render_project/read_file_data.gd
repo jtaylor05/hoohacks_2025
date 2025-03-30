@@ -1,11 +1,26 @@
 extends Node
 
+var last_length : int = 0
 var buffer : Array = []
+var input_file : String = "res://input.txt"
+
+func loop_read() -> void:
+	var data = _read_line(input_file)
+	get_tree().create_timer(10.5).timeout.connect(loop_read)
+	if data:
+		for line in data:
+			buffer.append(line)
 
 func _read_line(file_path : String):
 	var lines = []
 	if FileAccess.file_exists(file_path):
 		var f : FileAccess = FileAccess.open(file_path, FileAccess.READ)
+		
+		if f.get_length() == last_length:
+			print("File hasn't changed")
+			return null
+		else:
+			last_length = f.get_length()
 		
 		var string_data = f.get_line().split(",")
 		while true:
@@ -27,7 +42,8 @@ func get_next_input():
 	return null
 
 func _ready() -> void:
-	var data = _read_line("res://input.txt")
+	var data = _read_line(input_file)
+	get_tree().create_timer(10.5).timeout.connect(loop_read)
 	if data:
 		for line in data:
 			buffer.append(line)
