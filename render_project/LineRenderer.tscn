@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://kboxl2jvxs84"]
+[gd_scene load_steps=6 format=3 uid="uid://kboxl2jvxs84"]
 
-[ext_resource type="Script" uid="uid://cn501mh1rxuhu" path="res://line_renderer.gd" id="1_r6e64"]
-[ext_resource type="Script" uid="uid://ysns60qmsx08" path="res://ScreenShotImage.gd" id="2_ahal8"]
-[ext_resource type="Script" uid="uid://ogrwwrp7tttj" path="res://free_look_camera.gd" id="2_b3xoa"]
+[ext_resource type="Script" path="res://line_renderer.gd" id="1_r6e64"]
+[ext_resource type="Script" path="res://ScreenShotImage.gd" id="2_ahal8"]
+[ext_resource type="Script" path="res://free_look_camera.gd" id="2_b3xoa"]
+[ext_resource type="Script" path="res://update_caption.gd" id="4_anjsc"]
 
 [sub_resource type="Environment" id="Environment_5ddi1"]
 background_mode = 1
@@ -74,8 +75,27 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 550
 theme_override_constants/margin_bottom = 600
 
-[node name="PauseButton" type="Button" parent="UI/PauseButtonContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/PauseButtonContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="PauseButton" type="Button" parent="UI/PauseButtonContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 toggle_mode = true
 text = "Pause"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/PauseButtonContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/PauseButtonContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Your Caption :"
+
+[node name="Caption" type="Label" parent="UI/PauseButtonContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+script = ExtResource("4_anjsc")
+
+[connection signal="tree_exiting" from="UI/PauseButtonContainer/HBoxContainer/HBoxContainer/Caption" to="UI/PauseButtonContainer/HBoxContainer/HBoxContainer/Caption" method="_on_tree_exiting"]

@@ -12,7 +12,7 @@ def generate_caption(img_path, model_name="llava"):
         },
         {
             "role": "user",
-            "content": f"Please use two words to describe the material in this image: {img_path}"
+            "content": f"Please use two words to describe what the lines in this image most closely resemble: {img_path}"
         }
     ]
 
