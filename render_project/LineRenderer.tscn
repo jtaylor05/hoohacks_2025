@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://kboxl2jvxs84"]
+[gd_scene load_steps=4 format=3 uid="uid://kboxl2jvxs84"]
 
 [ext_resource type="Script" path="res://line_renderer.gd" id="1_r6e64"]
 [ext_resource type="Script" path="res://free_look_camera.gd" id="2_b3xoa"]
@@ -6,9 +6,6 @@
 [sub_resource type="Environment" id="Environment_5ddi1"]
 background_mode = 1
 background_color = Color(1, 1, 1, 0.278431)
-
-[sub_resource type="BoxMesh" id="BoxMesh_mu8aj"]
-size = Vector3(20, 20, 1)
 
 [node name="DrawController" type="Node3D"]
 script = ExtResource("1_r6e64")
@@ -29,27 +26,28 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="UI"]
+[node name="LineThicknessContainer" type="MarginContainer" parent="UI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 905
 theme_override_constants/margin_top = 545
 theme_override_constants/margin_right = 110
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/LineThicknessContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UI/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="UI/LineThicknessContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Line Thickness"
 horizontal_alignment = 1
 
-[node name="LineThicknessSlider" type="HSlider" parent="UI/MarginContainer/VBoxContainer"]
+[node name="LineThicknessSlider" type="HSlider" parent="UI/LineThicknessContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 min_value = 0.01
@@ -57,6 +55,21 @@ max_value = 1.0
 step = 0.01
 value = 0.2
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
-mesh = SubResource("BoxMesh_mu8aj")
+[node name="PauseButtonContainer" type="MarginContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 550
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 550
+theme_override_constants/margin_bottom = 600
+
+[node name="PauseButton" type="Button" parent="UI/PauseButtonContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+text = "Pause"

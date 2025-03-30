@@ -16,6 +16,7 @@ func _read_line(file_path : String):
 			string_data = f.get_line().split(",")
 			if f.eof_reached():
 				break
+		f.close()
 	else:
 		return null
 	return lines
