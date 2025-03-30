@@ -43,7 +43,7 @@ func get_next_input():
 	return null
 
 func _ready() -> void:
-	var data = _read_line(input_file)
+	var data = 1#_read_line(input_file)
 	get_tree().create_timer(10.5).timeout.connect(loop_read)
 	if data:
 		for line in data:

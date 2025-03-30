@@ -1,8 +1,7 @@
 extends Node
 
-var points : Array = []
-var max_length = 200
-
+var input_file : String = "res://input.txt"
+var last_point : Vector3
 @export var max_size : float = 20.0
 
 func get_scale_factor(points) -> float:
@@ -20,19 +19,25 @@ func to_vector(point, scale = 1.0) -> Vector3:
 
 func _process(delta: float) -> void:
 	if !%PauseButton.button_pressed:
-		var input = ReadFileData.get_next_input()
-		if input:
-			input.append(%LineThicknessSlider.value)
-			points.append(input)
-			if len(points) > max_length:
-				points = points.slice(200 - len(points))
-		if points.is_empty():
-			return
-	
-	for i in range(1, len(points)):
-		var a = DebugDraw3D.new_scoped_config().set_thickness(points[i-1][3])
-		var scale = get_scale_factor(points) * max_size
-		var first_point = to_vector(points[i-1], scale)
-		var last_point  = to_vector(points[i], scale)
-		DebugDraw3D.draw_line(first_point, last_point, Color(0.5, 0.5, 0.5))
+		if FileAccess.file_exists(input_file):
+			var f : FileAccess = FileAccess.open(input_file, FileAccess.READ)
+			
+			var string_data = f.get_line().split(",")
+			while true:
+				var data = []
+				for i in range(0, len(string_data)):
+					data.append(float(string_data[i]))
+				var point = to_vector(data)
+				if !last_point:
+					last_point = point
+				else:
+					var a = DebugDraw3D.new_scoped_config().set_thickness(%LineThicknessSlider.value)
+					DebugDraw3D.draw_line(last_point, point, Color(0.5, 0.5, 0.5), 1000)
+					last_point = point
+				
+				string_data = f.get_line().split(",")
+				if f.eof_reached():
+					break
+			f.close()
+			DirAccess.remove_absolute("res://input.txt")
 	
