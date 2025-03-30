@@ -1,6 +1,7 @@
 #sanitizes and writes the live arduino imu serial data read from the text file that CoolTerm writes to approximately every 10 seconds
 import time
 import re
+import os
 path = "imu_points.txt"
 output = "hoohacks_2025/render_project/input.txt"
 
@@ -27,6 +28,9 @@ def read_new_data(file_path):
                 new_lines = lines[line_number:]
                 cleaned_lines = [line.strip() for line in new_lines]
                 line_number = len(lines)
+                if not os.path.exists(output):
+                    with open(output, 'w'):  # Creates the file if it doesn't exist
+                        pass
                 with open(output, "w") as output_file:
                     for line in cleaned_lines:
                         if is_valid_line(line):

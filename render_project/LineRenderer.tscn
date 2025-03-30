@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://kboxl2jvxs84"]
 
-[ext_resource type="Script" path="res://line_renderer.gd" id="1_r6e64"]
-[ext_resource type="Script" path="res://ScreenShotImage.gd" id="2_ahal8"]
-[ext_resource type="Script" path="res://free_look_camera.gd" id="2_b3xoa"]
+[ext_resource type="Script" uid="uid://cn501mh1rxuhu" path="res://line_renderer.gd" id="1_r6e64"]
+[ext_resource type="Script" uid="uid://ysns60qmsx08" path="res://ScreenShotImage.gd" id="2_ahal8"]
+[ext_resource type="Script" uid="uid://ogrwwrp7tttj" path="res://free_look_camera.gd" id="2_b3xoa"]
 
 [sub_resource type="Environment" id="Environment_5ddi1"]
 background_mode = 1
@@ -19,7 +19,7 @@ environment = SubResource("Environment_5ddi1")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 35)
 current = true
 script = ExtResource("2_b3xoa")
 
