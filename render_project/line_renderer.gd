@@ -1,6 +1,7 @@
 extends Node
 
 var points : Array = []
+var max_length = 200
 
 @export var max_size : float = 20.0
 
@@ -23,6 +24,8 @@ func _process(delta: float) -> void:
 		if input:
 			input.append(%LineThicknessSlider.value)
 			points.append(input)
+			if len(points) > max_length:
+				points = points.slice(200 - len(points))
 		if points.is_empty():
 			return
 	

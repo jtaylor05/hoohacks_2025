@@ -32,6 +32,7 @@ func _read_line(file_path : String):
 			if f.eof_reached():
 				break
 		f.close()
+		DirAccess.remove_absolute("res://input.txt")
 	else:
 		return null
 	return lines
