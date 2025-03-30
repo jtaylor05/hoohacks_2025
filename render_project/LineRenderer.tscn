@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://kboxl2jvxs84"]
+[gd_scene load_steps=4 format=3 uid="uid://kboxl2jvxs84"]
 
 [ext_resource type="Script" path="res://line_renderer.gd" id="1_r6e64"]
 
@@ -6,15 +6,17 @@
 background_mode = 1
 background_color = Color(1, 1, 1, 0.278431)
 
+[sub_resource type="BoxMesh" id="BoxMesh_mu8aj"]
+size = Vector3(20, 20, 1)
+
 [node name="DrawController" type="Node3D"]
 script = ExtResource("1_r6e64")
-scale = 0.01
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_5ddi1")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 48.4663)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 current = true
 
 [node name="UI" type="Control" parent="."]
@@ -52,3 +54,7 @@ min_value = 0.01
 max_value = 1.0
 step = 0.01
 value = 0.2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_mu8aj")
